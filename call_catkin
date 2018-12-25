@@ -1,0 +1,208 @@
+#!/bin/bash
+
+if [[ -z "$1" ]]; then
+	echo -e "Usage:"
+	echo -e "\t$0 [sanitizer]"
+	echo -e ""
+	echo -e "[sanitizer] can be one of address, undefined or thread."
+	exit 2
+fi
+
+SANITIZER=$1
+
+./build_catkin_module $SANITIZER bond_core bond_core
+./build_catkin_module $SANITIZER bond_core test_bond
+./build_catkin_module $SANITIZER bond_core bondpy
+./build_catkin_module $SANITIZER bond_core bondcpp
+./build_catkin_module $SANITIZER bond_core smclib
+./build_catkin_module $SANITIZER bond_core bond
+./build_catkin_module $SANITIZER diagnostics diagnostics
+./build_catkin_module $SANITIZER diagnostics diagnostic_analysis
+./build_catkin_module $SANITIZER diagnostics diagnostic_updater
+./build_catkin_module $SANITIZER diagnostics diagnostic_aggregator
+./build_catkin_module $SANITIZER diagnostics diagnostic_common_diagnostics
+./build_catkin_module $SANITIZER diagnostics test_diagnostic_aggregator
+./build_catkin_module $SANITIZER diagnostics rosdiagnostic
+./build_catkin_module $SANITIZER diagnostics self_test
+./build_catkin_module $SANITIZER gentypelibxml scripts
+./build_catkin_module $SANITIZER robot_model robot_model
+./build_catkin_module $SANITIZER common_msgs actionlib_msgs
+./build_catkin_module $SANITIZER common_msgs common_msgs
+./build_catkin_module $SANITIZER common_msgs stereo_msgs
+./build_catkin_module $SANITIZER common_msgs diagnostic_msgs
+./build_catkin_module $SANITIZER common_msgs nav_msgs
+./build_catkin_module $SANITIZER common_msgs sensor_msgs
+./build_catkin_module $SANITIZER common_msgs shape_msgs
+./build_catkin_module $SANITIZER common_msgs geometry_msgs
+./build_catkin_module $SANITIZER common_msgs visualization_msgs
+./build_catkin_module $SANITIZER common_msgs trajectory_msgs
+./build_catkin_module $SANITIZER roslint tests
+./build_catkin_module $SANITIZER genpybindings scripts
+./build_catkin_module $SANITIZER rosconsole_bridge test
+./build_catkin_module $SANITIZER metapackages simulators
+./build_catkin_module $SANITIZER metapackages perception
+./build_catkin_module $SANITIZER metapackages desktop
+./build_catkin_module $SANITIZER metapackages viz
+./build_catkin_module $SANITIZER metapackages ros_base
+./build_catkin_module $SANITIZER metapackages ros_core
+./build_catkin_module $SANITIZER metapackages desktop_full
+./build_catkin_module $SANITIZER metapackages robot
+./build_catkin_module $SANITIZER common_tutorials pluginlib_tutorials
+./build_catkin_module $SANITIZER common_tutorials common_tutorials
+./build_catkin_module $SANITIZER common_tutorials nodelet_tutorial_math
+./build_catkin_module $SANITIZER common_tutorials turtle_actionlib
+./build_catkin_module $SANITIZER common_tutorials actionlib_tutorials
+./build_catkin_module $SANITIZER urdf urdf
+./build_catkin_module $SANITIZER urdf urdf_parser_plugin
+./build_catkin_module $SANITIZER xacro test
+./build_catkin_module $SANITIZER joint_state_publisher joint_state_publisher
+./build_catkin_module $SANITIZER gencpp scripts
+./build_catkin_module $SANITIZER collada_urdf collada_urdf
+./build_catkin_module $SANITIZER collada_urdf collada_parser
+./build_catkin_module $SANITIZER pluginlib pluginlib
+./build_catkin_module $SANITIZER tf2_visualization tf2_visualization
+./build_catkin_module $SANITIZER roscpp_core roscpp_traits
+./build_catkin_module $SANITIZER roscpp_core roscpp_core
+./build_catkin_module $SANITIZER roscpp_core cpp_common
+./build_catkin_module $SANITIZER roscpp_core rostime
+./build_catkin_module $SANITIZER roscpp_core roscpp_serialization
+./build_catkin_module $SANITIZER ros_tutorials rospy_tutorials
+./build_catkin_module $SANITIZER ros_tutorials ros_tutorials
+./build_catkin_module $SANITIZER ros_tutorials turtlesim
+./build_catkin_module $SANITIZER ros_tutorials roscpp_tutorials
+./build_catkin_module $SANITIZER ros_comm_msgs rosgraph_msgs
+./build_catkin_module $SANITIZER ros_comm_msgs std_srvs
+./build_catkin_module $SANITIZER console_bridge test
+./build_catkin_module $SANITIZER ros_realtime rosatomic
+./build_catkin_module $SANITIZER ros_realtime lockfree
+./build_catkin_module $SANITIZER ros_realtime ros_realtime
+./build_catkin_module $SANITIZER ros_realtime rosrt
+./build_catkin_module $SANITIZER ros_realtime allocators
+./build_catkin_module $SANITIZER roslisp_repl roslisp_repl
+./build_catkin_module $SANITIZER nodelet_core test_nodelet
+./build_catkin_module $SANITIZER nodelet_core nodelet_core
+./build_catkin_module $SANITIZER nodelet_core nodelet_topic_tools
+./build_catkin_module $SANITIZER nodelet_core test_nodelet_topic_tools
+./build_catkin_module $SANITIZER nodelet_core nodelet
+./build_catkin_module $SANITIZER genpy scripts
+./build_catkin_module $SANITIZER ros ros
+./build_catkin_module $SANITIZER urdfdom urdf_parser
+./build_catkin_module $SANITIZER resource_retriever test
+./build_catkin_module $SANITIZER class_loader test
+./build_catkin_module $SANITIZER geometry2 tf2_msgs
+./build_catkin_module $SANITIZER geometry2 tf2_kdl
+./build_catkin_module $SANITIZER geometry2 test_tf2
+./build_catkin_module $SANITIZER geometry2 tf2_tools
+./build_catkin_module $SANITIZER geometry2 tf2_geometry_msgs
+./build_catkin_module $SANITIZER geometry2 tf2_py
+./build_catkin_module $SANITIZER geometry2 tf2_sensor_msgs
+./build_catkin_module $SANITIZER geometry2 tf2_bullet
+./build_catkin_module $SANITIZER geometry2 tf2
+./build_catkin_module $SANITIZER geometry2 tf2_eigen
+./build_catkin_module $SANITIZER geometry2 geometry2
+./build_catkin_module $SANITIZER geometry2 tf2_ros
+./build_catkin_module $SANITIZER executive_smach smach_msgs
+./build_catkin_module $SANITIZER executive_smach smach_ros
+./build_catkin_module $SANITIZER executive_smach smach
+./build_catkin_module $SANITIZER executive_smach executive_smach
+./build_catkin_module $SANITIZER geometry tf_conversions
+./build_catkin_module $SANITIZER geometry tf
+./build_catkin_module $SANITIZER geometry geometry
+./build_catkin_module $SANITIZER geometry kdl_conversions
+./build_catkin_module $SANITIZER geometry eigen_conversions
+./build_catkin_module $SANITIZER urdfdom_headers urdf_world
+./build_catkin_module $SANITIZER urdfdom_headers urdf_exception
+./build_catkin_module $SANITIZER urdfdom_headers urdf_model_state
+./build_catkin_module $SANITIZER urdfdom_headers urdf_model
+./build_catkin_module $SANITIZER urdfdom_headers urdf_sensor
+./build_catkin_module $SANITIZER angles angles
+./build_catkin_module $SANITIZER genlisp scripts
+./build_catkin_module $SANITIZER dynamic_reconfigure test
+./build_catkin_module $SANITIZER roslisp env-hooks
+./build_catkin_module $SANITIZER kdl_parser kdl_parser_py
+./build_catkin_module $SANITIZER kdl_parser kdl_parser
+./build_catkin_module $SANITIZER ros_comm ros_comm
+./build_catkin_module $SANITIZER geometry_tutorials turtle_tf
+./build_catkin_module $SANITIZER geometry_tutorials turtle_tf2
+./build_catkin_module $SANITIZER geometry_tutorials geometry_tutorials
+./build_catkin_module $SANITIZER actionlib test
+./build_catkin_module $SANITIZER roslisp_common roslisp_utilities
+./build_catkin_module $SANITIZER roslisp_common cl_utils
+./build_catkin_module $SANITIZER roslisp_common actionlib_lisp
+./build_catkin_module $SANITIZER roslisp_common cl_urdf
+./build_catkin_module $SANITIZER roslisp_common cl_transforms_stamped
+./build_catkin_module $SANITIZER roslisp_common cl_tf
+./build_catkin_module $SANITIZER roslisp_common cl_tf2
+./build_catkin_module $SANITIZER roslisp_common cl_transforms
+./build_catkin_module $SANITIZER roslisp_common roslisp_common
+./build_catkin_module $SANITIZER flirtlib flirtlib_ros
+./build_catkin_module $SANITIZER flirtlib wg_flirtlib
+./build_catkin_module $SANITIZER rospack test
+./build_catkin_module $SANITIZER diagnostics test self_test
+./build_catkin_module $SANITIZER common_msgs test sensor_msgs
+./build_catkin_module $SANITIZER xacro test-xacro-cmake test
+./build_catkin_module $SANITIZER ros_tutorials listener_single_message roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials listener_multiple roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials add_two_ints_server_class roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials listener_with_userdata roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials time_api roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials talker roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials listener_class roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials listener_async_spin roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials node_handle_namespaces roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials listener_$SANITIZERed_spin roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials notify_connect roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials listener_unreliable roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials parameters roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials custom_callback_processing roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials anonymous_listener roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials add_two_ints_client roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials listener roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials babbler roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials timers roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials listener_with_tracked_object roscpp_tutorials
+./build_catkin_module $SANITIZER ros_tutorials add_two_ints_server roscpp_tutorials
+./build_catkin_module $SANITIZER console_bridge gtest test
+./build_catkin_module $SANITIZER ros roslang core
+./build_catkin_module $SANITIZER ros rosbuild core
+./build_catkin_module $SANITIZER ros roslib core
+./build_catkin_module $SANITIZER ros mk core
+./build_catkin_module $SANITIZER ros rosboost_cfg tools
+./build_catkin_module $SANITIZER ros rosunit tools
+./build_catkin_module $SANITIZER ros roscreate tools
+./build_catkin_module $SANITIZER ros rosclean tools
+./build_catkin_module $SANITIZER ros rosmake tools
+./build_catkin_module $SANITIZER ros rosbash tools
+./build_catkin_module $SANITIZER urdfdom test urdf_parser
+./build_catkin_module $SANITIZER cmake_modules test_find_tinyxml tests
+./build_catkin_module $SANITIZER angles test angles
+./build_catkin_module $SANITIZER ros_comm test_rosbag_storage test
+./build_catkin_module $SANITIZER ros_comm test_roslib_comm test
+./build_catkin_module $SANITIZER ros_comm test_rosmaster test
+./build_catkin_module $SANITIZER ros_comm test_rostopic test
+./build_catkin_module $SANITIZER ros_comm test_rosbag test
+./build_catkin_module $SANITIZER ros_comm test_roslaunch test
+./build_catkin_module $SANITIZER ros_comm test_rospy test
+./build_catkin_module $SANITIZER ros_comm test_roscpp test
+./build_catkin_module $SANITIZER ros_comm test_rosparam test
+./build_catkin_module $SANITIZER ros_comm test_rosservice test
+./build_catkin_module $SANITIZER ros_comm test_rosgraph test
+./build_catkin_module $SANITIZER ros_comm rostopic tools
+./build_catkin_module $SANITIZER ros_comm rosgraph tools
+./build_catkin_module $SANITIZER ros_comm roslaunch tools
+./build_catkin_module $SANITIZER ros_comm rosbag tools
+./build_catkin_module $SANITIZER ros_comm rosservice tools
+./build_catkin_module $SANITIZER ros_comm rosmsg tools
+./build_catkin_module $SANITIZER ros_comm rosout tools
+./build_catkin_module $SANITIZER ros_comm topic_tools tools
+./build_catkin_module $SANITIZER ros_comm rostest tools
+./build_catkin_module $SANITIZER ros_comm rosmaster tools
+./build_catkin_module $SANITIZER ros_comm rosnode tools
+./build_catkin_module $SANITIZER ros_comm rosparam tools
+./build_catkin_module $SANITIZER ros_comm rosbag_storage tools
+./build_catkin_module $SANITIZER ros_comm xmlrpcpp utilities
+./build_catkin_module $SANITIZER ros_comm message_filters utilities
+./build_catkin_module $SANITIZER ros_comm roslz4 utilities
+./build_catkin_module $SANITIZER ros_comm roswtf utilities
+./build_catkin_module $SANITIZER ros_comm roscpp clients
+./build_catkin_module $SANITIZER ros_comm rospy clients

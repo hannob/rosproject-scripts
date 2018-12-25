@@ -1,0 +1,67 @@
+#!/bin/bash
+
+if [ -z "$3" ]; then
+	echo -e "Usage:"
+	echo -e "\t$0 [sanitizer] [github repo] [module] [path_optional]"
+	echo -e ""
+	echo -e "Use .. for [path_optional] if module is directly in repo."
+	exit 2
+fi
+
+BASEDIR="/catkin"
+REPODIR="$BASEDIR/repos/"
+BUILDDIR="$BASEDIR/buildtmp/"
+LOGDIR="$BASEDIR/logfiles"
+
+[ -d "$REPODIR" ] || mkdir -p "$REPODIR"
+[ -d "$BUILDDIR" ] || mkdir -p "$BUILDDIR"
+[ -d "$LOGDIR" ] || mkdir -p "$LOGDIR"
+
+before="$(ls $LOGDIR)"
+
+SANITIZER="$1"
+REPO="$2"
+MODULE="$3"
+REPOPATH="$4"
+CXXFLAGS="-fsanitize=$SANITIZER -g"
+
+export UBSAN_OPTIONS="log_path=$LOGDIR/ubsan-$MODULE"
+export ASAN_OPTIONS="log_path=$LOGDIR/asan-$MODULE"
+export TSAN_OPTIONS="log_path=$LOGDIR/tsan-$MODULE"
+
+echo -e "\e[92m * Check if repo is already there, else check it out \e[39m"
+cd "$REPODIR"
+if ! [[ -d "$REPO" ]]; then
+	git clone --depth=1 "https://github.com/ros/$REPO.git"
+else
+	cd "$REPO"
+	git pull
+fi
+
+echo -e "\e[92m * check if build dir already exists \e[39m"
+if [[ -d "$BUILDDIR/$MODULE" ]]; then
+	rm -r "$BUILDDIR/$MODULE"
+fi
+
+# http://wiki.ros.org/catkin/Tutorials/create_a_workspace
+echo -e "\e[92m * create catkin workspace \e[39m"
+source /opt/ros/melodic/setup.bash
+mkdir -p "$BUILDDIR/$MODULE/src"
+cd "$BUILDDIR/$MODULE"
+catkin_make
+
+source devel/setup.bash
+cp -r "$REPODIR/$REPO/$REPOPATH/$MODULE" src/
+
+echo -e "\e[92m * compile \e[39m"
+catkin_make -DCMAKE_CXX_FLAGS="$CXXFLAGS" --make-args VERBOSE=1
+RET1=$?
+
+echo -e "\e[92m * run tests \e[39m"
+catkin_make -DCMAKE_CXX_FLAGS="$CXXFLAGS" --make-args VERBOSE=1 run_tests
+RET2=$?
+
+after="$(ls $LOGDIR)"
+difference="$(comm -13 <(echo "$before") <(echo "$after"))"
+
+echo "$MODULE" "$REPO" "$REPOPATH" "$SANITIZER" "$RET1" "$RET2" "$difference" >> $BASEDIR/catkin-sanitize.log
