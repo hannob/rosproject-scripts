@@ -5,6 +5,9 @@ These scripts were created in a project intending to test
 the ROS software with the compiler sanitizers available
 in gcc and clang.
 
+You can find a report about the project
+[here](https://github.com/hannob/rosproject-scripts/blob/master/report/rosreport.pdf).
+
 build_catkin_module
 ===================
 
